@@ -1,0 +1,31 @@
+1. What is the List interface? How does it differ from Set and Queue?
+List extends Collection and represents an ordered sequence that maintains insertion order, allows duplicate elements,
+allows multiple null values, and provides index-based (positional) access via methods like get(index), set(index, e), add(index, e).
+
+vs Set: Set does not guarantee order (except LinkedHashSet, which preserves insertion order, and TreeSet, which sorts)
+ and does not allow duplicates. List explicitly allows duplicates and always maintains order by index.
+vs Queue: Queue is designed for holding elements prior to processing, typically in FIFO order (or priority order for PriorityQueue),
+and elements are accessed from the head only (peek/poll) — not by arbitrary index. List allows random access to any position.
+
+2. What are the classes that implement List?
+
+ArrayList — resizable array-backed implementation, fast random access
+LinkedList — doubly linked list, also implements Deque
+Vector — legacy, synchronized, resizable array
+Stack — extends Vector, provides LIFO (stack) operations
+CopyOnWriteArrayList — thread-safe variant (java.util.concurrent) that copies the underlying array on every write
+
+Note: Vector and Stack are legacy classes from pre-Java 2 that were retrofitted into the Collections Framework when it was introduced in Java 1.2.
+
+3. Is List an ordered collection? Does it allow duplicates and null values?
+Yes — List is ordered by insertion (index-based). It allows duplicate elements and allows multiple null values. Exception: immutable lists created via List.of() do not allow null and throw NullPointerException if you try to add one.
+
+4. What is the difference between List and Array in Java?
+
+Array: a fixed-size container, size is declared at creation and cannot change, can hold either primitives or objects directly.
+List: an interface implemented by dynamically resizable classes (ArrayList, LinkedList, etc.), holds only objects (primitives get autoboxed, e.g., int → Integer).
+
+Important nuance: only ArrayList is internally array-backed. List itself is just an interface and makes no guarantee about internal structure — LinkedList, for example, uses linked nodes, not an array.
+
+5. How does ArrayList work internally?
+ArrayList is backed internally by an Object[] array. Elements are stored in contiguous indices, which is what gives get(index) O(1) access. When the array reaches capacity and a new element is added, a new, larger array is allocated, and existing elements are copied over using System.arraycopy() — this resize operation is O(n), though insertions themselves are O(1) amortized over time.

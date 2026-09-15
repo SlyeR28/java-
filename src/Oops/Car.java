@@ -1,12 +1,6 @@
 package Oops;
 
-import lombok.*;
 
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@ToString
 public class Car {
     private String colour;
     private String brand;

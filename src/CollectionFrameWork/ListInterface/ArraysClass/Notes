@@ -1,0 +1,56 @@
+1 ->How does ArrayList work internally? What data structure backs it?
+ArrayList maintains internally fixed size array that grows ans shrink dynamically depending upon condition
+it provide some inbuilt method for controlling  the list size or increasing factor of array inside maintained
+as soon as array get filled its create new array size of double or 1.5 and copies of all elements stored in
+old array that make its slow in the enviroment frequent deletion and addition of elements
+but it always proide 0(1) random access b/c memory refernces
+
+
+6. What is the default initial capacity of an ArrayList?
+ default capacity is 10 but we can provide also the initial capacity with the method new ArrayList<>(int capacity);
+7. How does ArrayList grow when it exceeds capacity? What's the growth factor (1.5x in Java)?
+as soon as it exceeds capacity arraylist internally creates new array of size 1.5 times to its and copies
+old array element into new array via the help of method System.arrayCopy();
+8. What is the time complexity of add(), get(), remove(), contains() in ArrayList?
+time complexity differs for add() remove() but for get() or contains its remains constant b/c of
+contigious memory allocation
+9. Why is add(index, element) and remove(index) costly in ArrayList (O(n)) compared to LinkedList?
+  while adding  and removing element at  specific index all elements needs to get shift from that position to
+  next +1 or -1 location
+10. What happens internally when you call ensureCapacity() or trimToSize()?
+What happens internally when you call ensureCapacity() or trimToSize()?
+
+ensureCapacity(int minCapacity): Pre-emptively resizes the internal
+array to at least the specified capacity before you start adding elements.
+This is useful when you know in advance that you're going to insert a large number of
+elements — it avoids multiple incremental O(n) resize/copy operations by doing one upfront
+allocation instead.
+trimToSize(): Shrinks the internal array's capacity down to exactly match
+the current number of elements (size), discarding any unused reserved slots.
+This is useful for freeing up memory after a list has had many elements removed and
+is left holding onto excess allocated capacity.
+11. Is ArrayList thread-safe? How do you make it thread-safe?
+no array is not thread-safe you can use either copyOnWriteArrayList or use Collection.sycro method
+
+
+questions
+
+
+Medium
+Sort an ArrayList of custom objects (e.g., Employee) by multiple fields using Comparator chaining (thenComparing).
+Demonstrate the classic remove(int index) vs remove(Object) trap using an ArrayList<Integer> — show how list.remove(1) behaves differently depending on whether 1 is passed as a primitive int vs a boxed Integer.
+Safely remove elements from an ArrayList while iterating (using Iterator.remove() or removeIf()), and show what goes wrong if you try list.remove() directly inside a for-each loop.
+Demonstrate ConcurrentModificationException with a for-each loop on an ArrayList, then fix it.
+Flatten a nested ArrayList (List<List<Integer>>) into a single ArrayList.
+Find all pairs in an ArrayList that sum to a target value.
+Partition an ArrayList into sublists of a given size (chunking).
+Implement your own simple dynamic array (mini-ArrayList) from scratch, including manual resizing logic (simulate the 1.5x growth + System.arraycopy behavior).
+Given an ArrayList, group consecutive duplicate elements together (run-length encoding).
+Demonstrate how subList() on an ArrayList is a view, not a copy — show a modification to the sublist reflecting on the original list, then show how to avoid it (new ArrayList<>(list.subList(...))).
+Write a program to demonstrate ensureCapacity() and trimToSize() — use reflection or timing to show reduced resize operations when ensureCapacity() is called upfront.
+Hard / Design-Oriented
+Design an LRU cache using ArrayList + HashMap combo (without LinkedHashMap).
+Compare and benchmark performance of ArrayList vs LinkedList for: insert-at-front, insert-at-end, insert-at-middle, and random access on a large dataset (e.g., 100,000 elements) — print timing results and explain why.
+Implement a thread-safe wrapper around ArrayList using synchronized blocks manually, then compare its behavior/performance to CopyOnWriteArrayList under a high-read, low-write multithreaded scenario.
+Design a data structure using ArrayList that supports O(1) insert, O(1) delete (of an arbitrary element, not by index), and O(1) getRandom() — this is the classic "Insert Delete GetRandom O(1)" problem, typically solved with ArrayList + HashMap.
+Given a stream of integers arriving one at a time, maintain and return the median efficiently — while not strictly ArrayList-only, a naive/ArrayList-based approach (insert into sorted position) is a common follow-up before introducing heaps.

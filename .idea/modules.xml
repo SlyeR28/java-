@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Infosys/Infosys.iml" filepath="$PROJECT_DIR$/Infosys/Infosys.iml" />
       <module fileurl="file://$PROJECT_DIR$/StreamsProblems/StreamsProblems.iml" filepath="$PROJECT_DIR$/StreamsProblems/StreamsProblems.iml" />
       <module fileurl="file://$PROJECT_DIR$/lastJava.iml" filepath="$PROJECT_DIR$/lastJava.iml" />
     </modules>
